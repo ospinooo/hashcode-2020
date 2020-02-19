@@ -17,5 +17,6 @@ if __name__ == "__main__":
     # Execute algorithm
     result, score = solve()
 
+    print("Score: ", score)
     # Save data
     save(sys.argv[0], result, score)
