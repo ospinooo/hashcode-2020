@@ -10,7 +10,7 @@ def save(filename, data, score):
         score {int} -- Score we have achieve
     """
 
-    with open("results/" + filename + "_" + str(score) + "_" + time.time(), 'w') as f:
+    with open(f"./results/{filename}_{str(score)}_{time.time()}.txt", 'w') as f:
 
         for d in data:
             f.write()

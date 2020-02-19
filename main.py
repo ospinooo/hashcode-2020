@@ -1,8 +1,14 @@
 
 # Import all libraries
 import sys
-import tqdm
+import numpy as np
+import random  # seed, shuffle and randint
+import itertools
+import os
+import time
+import math
 
+input_file = sys.argv[1]
 
 # Import local libraries
 from input import parse_input
@@ -12,11 +18,11 @@ from solver import solve
 
 if __name__ == "__main__":
     # Read data
-    dataset = parse_input(filename=sys.argv[0])
+    dataset = parse_input(filename=input_file)
 
     # Execute algorithm
     result, score = solve()
 
     print("Score: ", score)
     # Save data
-    save(sys.argv[0], result, score)
+    save(input_file, result, score)
