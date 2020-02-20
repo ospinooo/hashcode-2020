@@ -18,11 +18,11 @@ from solver import solve
 
 if __name__ == "__main__":
     # Read data
-    dataset = parse_input(filename=input_file)
+    libraries, scores, D = parse_input(filename=input_file)
 
     # Execute algorithm
-    result, score = solve()
-
+    result, score = solve(libraries, scores, D)
+    
     print("Score: ", score)
     # Save data
     save(input_file, result, score)
