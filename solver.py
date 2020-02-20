@@ -42,7 +42,7 @@ def solve(libraries, scores, D):
         else:
             if selected_libraries[libraries_i - 1]['sign_up_days'] + last == current_day:
                 selected_libraries[libraries_i - 1]['signed_up'] = True
-                last += current_day
+                last = current_day
                 sign_up = False
 
         for i in range(len(selected_libraries)):
@@ -63,6 +63,5 @@ def solve(libraries, scores, D):
                 lib['selected'] += sel
             
         pbar.set_postfix(score=score)
-        current_day += 1
     
     return selected_libraries, score
