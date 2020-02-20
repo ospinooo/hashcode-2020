@@ -29,6 +29,6 @@ if __name__ == "__main__":
             max_score = score
             max_result = result
     
-    print("Score: ", score)
+    print("Score: ", max_score)
     # Save data
-    save(input_file, max_result, score)
+    save(input_file, max_result, max_score)

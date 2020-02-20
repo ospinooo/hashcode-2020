@@ -112,3 +112,6 @@ dmypy.json
 
 ## result folder source
 src.zip
+
+## Results
+results/*
