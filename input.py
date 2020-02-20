@@ -1,4 +1,7 @@
 
+import numpy as np
+
+
 def parse_input(filename):
     """Creates the dataset from the filename data
 
@@ -13,19 +16,25 @@ def parse_input(filename):
     # D: Number of days
     B, L, D = [int(value) for value in lines[0].split()]
     
-    scores = [int(value) for value in lines[1].split()]
+    scores = np.array([int(value) for value in lines[1].split()])
 
     libraries = []
-    for i in range(0, 2*L, 2):
+    for i in range(2, 2*L + 1, 2):
         # Strip -> Get rid of 0s
         # Split -> split with the space into a list
         N, T, M = lines[i].split()
+        books_i = np.array([int(value) for value in lines[i+1].split()])
+        books_ordered_i = books_i[np.argsort(scores[books_i]).tolist()]
 
         libraries.append({
             'total_books':N,
             'sign_up_days': T, 
-            'books_day':M,
-            'books' : [int(value) for value in lines[i+1].split()]
+            'books_day': M,
+            'books': books_ordered_i.tolist()
         })
 
     return libraries, scores, D
+
+
+if __name__ == "__main__":
+    print(parse_input("inputs/a_in.txt"))

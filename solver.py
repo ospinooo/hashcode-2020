@@ -7,4 +7,7 @@ from tqdm import tqdm
 
 
 def solve():
+    """
+        N libraries:
+    """
     pass
