@@ -15,10 +15,10 @@ def solve(libraries, scores, D):
         ids
     """
     # ORDER
-    # libraries = sorted(libraries, key=lambda k: k['all_sum'], reverse=True)
+    libraries = sorted(libraries, key=lambda k: k['all_sum'], reverse=True)
     # SHUFFLE
-    random.seed(int(time.time()*10**60 % 10**6))
-    random.shuffle(libraries)
+    # random.seed(int(time.time()*10**60 % 10**6))
+    # random.shuffle(libraries)
 
     selected_libraries = []
     current_day = 0
@@ -34,7 +34,7 @@ def solve(libraries, scores, D):
     score = 0
     for current_day in pbar:
         
-        if sign_up and selected_libraries[libraries_i - 1]['sign_up_days'] + last == current_day + 1:
+        if sign_up and selected_libraries[libraries_i - 1]['sign_up_days'] + last == current_day:
             selected_libraries[libraries_i - 1]['signed_up'] = True
             last = current_day
             sign_up = False

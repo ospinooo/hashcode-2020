@@ -30,7 +30,7 @@ def parse_input(filename):
         
         libraries.append({
             'id': i//2 - 1,
-            'total_books':N,
+            'total_books': N,
             'sign_up_days': T, 
             'books_day': M,
             'books': books,

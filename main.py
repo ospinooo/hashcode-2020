@@ -23,7 +23,7 @@ if __name__ == "__main__":
     # Execute algorithm
     max_score = 0
     max_result = None
-    for x in range(0,100):
+    for x in range(0,1):
         result, score = solve(copy.deepcopy(libraries), scores, D)
         if max_score < score:
             max_score = score
