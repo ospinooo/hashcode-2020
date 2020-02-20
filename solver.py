@@ -51,12 +51,12 @@ def solve(libraries, scores, D):
                 # Introduce books
                 sel = []
                 while lib['index_selected'] >= 0 and len(sel) < lib['books_day']:
-                    if lib['books'][lib['index_selected']] not in indices_introduced:
-                        i_insert = lib['books'][lib['index_selected']]
+                    i_insert = lib['books'][lib['index_selected']]
+                    if i_insert not in indices_introduced:
                         sel.append(i_insert)
                         lib['number_books'] += 1
                         score += scores[i_insert]
-                        indices_introduced.add(lib['index_selected'])
+                        indices_introduced.add(i_insert)
 
                     lib['index_selected'] -= 1
 
