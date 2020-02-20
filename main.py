@@ -15,14 +15,20 @@ from input import parse_input
 from output import save
 from solver import solve
 
-
+import copy
 if __name__ == "__main__":
     # Read data
     libraries, scores, D = parse_input(filename=input_file)
 
     # Execute algorithm
-    result, score = solve(libraries, scores, D)
+    max_score = 0
+    max_result = None
+    for x in range(0,100):
+        result, score = solve(copy.deepcopy(libraries), scores, D)
+        if max_score < score:
+            max_score = score
+            max_result = result
     
     print("Score: ", score)
     # Save data
-    save(input_file, result, score)
+    save(input_file, max_result, score)

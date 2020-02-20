@@ -16,9 +16,9 @@ def save(filename, libraries, score):
 
         f.write(str(len(libraries)))
         for lib in libraries:
-            f.write("\n" + str(lib['id']) + " " + str(lib["number_books"]))
+            f.write("\n" + str(lib['id']) + " " + str(len(lib["selected"])))
             f.write("\n")
-            f.write(" ".join([str(lib["books"].pop()) for i in range(lib["number_books"])]))
+            f.write(" ".join([str(value) for value in lib["selected"]]))
                 
 
         f.close()

@@ -4,6 +4,8 @@
 # pbar = tqdm(range(n))
 # pbar.set_postfix(score=show.score, avg_score=avg_score)
 from tqdm import tqdm
+import random
+import time
 
 
 def solve(libraries, scores, D):
@@ -12,6 +14,12 @@ def solve(libraries, scores, D):
         books per library
         ids
     """
+    # ORDER
+    # libraries = sorted(libraries, key=lambda k: k['all_sum'], reverse=True)
+    # SHUFFLE
+    random.seed(int(time.time()))
+    random.shuffle(libraries)
+
     selected_libraries = []
     current_day = 0
     libraries_i = 0
@@ -21,6 +29,8 @@ def solve(libraries, scores, D):
 
     fin_libraries = []
     pbar = tqdm(range(D))
+    indices_introduced = set()
+
     score = 0
     for current_day in pbar:
 
@@ -37,20 +47,22 @@ def solve(libraries, scores, D):
 
         for i in range(len(selected_libraries)):
             lib = selected_libraries[i]
-            if lib['signed_up']:
+            if lib['signed_up'] and lib['index_selected'] > 0:
                 # Introduce books
-                if lib['number_books'] < lib['total_books']:
-                    ini = lib['total_books'] - lib['number_books'] - lib['books_day']
-                    fin = lib['total_books'] - lib['number_books'] 
-                    score += sum([i for i in lib['books'][ini:fin]])
-                    lib['number_books'] = lib['number_books'] + lib['books_day']
-                    if lib['number_books'] > lib['total_books']:
-                        lib['number_books'] = lib['total_books']
-                else:
-                    fin_libraries.append(lib)
-                    del selected_libraries[i]
+                sel = []
+                while lib['index_selected'] >= 0 and len(sel) < lib['books_day']:
+                    if lib['books'][lib['index_selected']] not in indices_introduced:
+                        i_insert = lib['books'][lib['index_selected']]
+                        sel.append(i_insert)
+                        lib['number_books'] += 1
+                        score += scores[i_insert]
+                        indices_introduced.add(lib['index_selected'])
 
+                    lib['index_selected'] -= 1
+
+                lib['selected'] += sel
+            
         pbar.set_postfix(score=score)
         current_day += 1
     
-    return fin_libraries + selected_libraries, score
+    return selected_libraries, score

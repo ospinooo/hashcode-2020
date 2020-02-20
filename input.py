@@ -24,16 +24,20 @@ def parse_input(filename):
         # Split -> split with the space into a list
         N, T, M = [int(value) for value in lines[i].split()]
         books_i = np.array([int(value) for value in lines[i+1].split()])
+        all_books_sum = np.sum(scores[books_i])
         books_ordered_i = books_i[np.argsort(scores[books_i]).tolist()]
-
+        books = books_ordered_i.tolist()
+        
         libraries.append({
             'id': i//2 - 1,
             'total_books':N,
             'sign_up_days': T, 
             'books_day': M,
-            'books': books_ordered_i.tolist(),
+            'books': books,
             'selected': [],
             'number_books': 0,
+            'all_sum':all_books_sum,
+            'index_selected': len(books) - 1,
             'signed_up': False
         })
 
