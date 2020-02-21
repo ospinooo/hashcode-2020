@@ -20,8 +20,6 @@ def parse_input(filename):
 
     libraries = []
     for i in range(2, 2*L + 1, 2):
-        # Strip -> Get rid of 0s
-        # Split -> split with the space into a list
         N, T, M = [int(value) for value in lines[i].split()]
         books_i = np.array([int(value) for value in lines[i+1].split()])
         all_books_sum = np.sum(scores[books_i])
